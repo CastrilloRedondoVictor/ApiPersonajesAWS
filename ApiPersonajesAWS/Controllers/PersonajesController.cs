@@ -33,7 +33,7 @@ namespace ApiPersonajesAWS.Controllers
             return Ok(personaje);
         }
 
-        [HttpPost]
+        [HttpPost("{id}")]
         public async Task<IActionResult> CreatePersonaje([FromBody] Models.Personaje personaje)
         {
             if (personaje == null)
@@ -45,13 +45,13 @@ namespace ApiPersonajesAWS.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdatePersonaje([FromBody] Models.Personaje personaje)
+        public async Task<IActionResult> UpdatePersonaje(int id, [FromBody] Models.Personaje personaje)
         {
             if (personaje == null)
             {
                 return BadRequest("El personaje no puede ser nulo.");
             }
-            await _repository.UpdatePersonajeAsync(personaje);
+            await _repository.UpdatePersonajeAsync(id, personaje);
             return Ok();
         }
 
