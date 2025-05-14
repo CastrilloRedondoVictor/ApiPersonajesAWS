@@ -22,6 +22,17 @@ namespace ApiPersonajesAWS.Controllers
             return Ok(personajes);
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> FindPersonaje(int id)
+        {
+            var personaje = await _repository.FindPersonajeAsync(id);
+            if (personaje == null)
+            {
+                return NotFound();
+            }
+            return Ok(personaje);
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreatePersonaje([FromBody] Models.Personaje personaje)
         {
@@ -43,5 +54,7 @@ namespace ApiPersonajesAWS.Controllers
             await _repository.UpdatePersonajeAsync(personaje);
             return Ok();
         }
+
+
     }
 }

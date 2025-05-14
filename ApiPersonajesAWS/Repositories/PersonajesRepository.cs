@@ -19,6 +19,11 @@ namespace ApiPersonajesAWS.Repositories
             return await _context.Personajes.ToListAsync();
         }
 
+        public async Task<Personaje> FindPersonajeAsync(int id)
+        {
+            return await _context.Personajes.FirstOrDefaultAsync(p => p.IdPersonaje == id);
+        }
+
         public async Task<int> GetMaxIdPersonajeAsync()
         {
             return await _context.Personajes.MaxAsync(p => p.IdPersonaje);
