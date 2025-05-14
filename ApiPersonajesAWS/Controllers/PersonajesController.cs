@@ -32,5 +32,16 @@ namespace ApiPersonajesAWS.Controllers
             await _repository.CreatePersonajeAsync(personaje);
             return Ok();
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdatePersonaje([FromBody] Models.Personaje personaje)
+        {
+            if (personaje == null)
+            {
+                return BadRequest("El personaje no puede ser nulo.");
+            }
+            await _repository.UpdatePersonajeAsync(personaje);
+            return Ok();
+        }
     }
 }
